@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+
+  # Api
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www
+    networks:
+      - bridge
+
+  # Webserver
+  nginx:
+    image: nginx:1.19.5-alpine
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - bridge
+
+  db:
+    image: postgres:13.1-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_PASSWORD=${DB_PASSWORD}'
+    networks:
+      - bridge
+
+  composer:
+    image: composer:2.0.7
+    command: composer install --no-dev
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - bridge
+
+
+networks:
+  bridge:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
