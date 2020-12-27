@@ -16,7 +16,7 @@
     </li>
 
     <li>
-        <a href="" class="font-bold text-lg mb-4 block">
+        <a href="{{ route('profiles.show', auth()->user()) }}" class="font-bold text-lg mb-4 block">
             Profile
         </a>
     </li>

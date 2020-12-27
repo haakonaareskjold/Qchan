@@ -18,6 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'avatar',
         'email',
         'password',
     ];
@@ -45,6 +46,13 @@ class User extends Authenticatable
     {
         $default = 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
         return asset($value ?: $default);
+    }
+
+    public function path($append = '')
+    {
+        $path = route('profiles.show', $this->username);
+
+        return $append ? "{$path}/{$append}" : $path;
     }
 
     public function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
