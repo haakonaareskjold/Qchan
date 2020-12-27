@@ -1,8 +1,6 @@
 <x-app>
-    @forelse($posts as $post)
-        @include('qchan._posts')
-    @empty
-        <p class="p-4">No Tweets yet</p>
-    @endforelse
-        {{--{{ $posts->links() }}--}}
+    <div class="lg:flex-1 lg:mx-10" style="max-width:700px">
+        @include('qchan._publish-post-panel')
+        @include('qchan._timeline')
+    </div>
 </x-app>

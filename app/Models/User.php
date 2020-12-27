@@ -61,6 +61,6 @@ class User extends Authenticatable
         return Post::query()->whereIn('user_id', $ids)
             ->orWhere('user_id', $this->id)
             ->latest()
-            ->paginate(10);
+            ->paginate(6);
     }
 }

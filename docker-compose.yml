@@ -37,7 +37,7 @@ services:
 
   composer:
     image: composer:2.0.8
-    command: composer install --no-dev
+    command: composer install
     working_dir: /var/www
     volumes:
       - .:/var/www
