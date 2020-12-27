@@ -1,4 +1,4 @@
-<ul>
+<ul class="ml-24">
     <li>
         <a href="{{ route('home') }}" class="font-bold text-lg mb-4 block">
             Home
@@ -16,8 +16,15 @@
     </li>
 
     <li>
-        <a href="#" class="font-bold text-lg mb-4 block">
+        <a href="" class="font-bold text-lg mb-4 block">
             Profile
         </a>
     </li>
 </ul>
+<section class="px-8 py-4 mb-2">
+    <header class="container mx-auto">
+        <h1>
+            <img src="{{ asset('logo.png')}}" alt="Q chan logo">
+        </h1>
+    </header>
+</section>
