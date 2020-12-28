@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+# Main page
+route::get('/', App\Http\Controllers\MainController::class)->name('main');
+
 # Posts
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/', [App\Http\Controllers\HomeController::class, 'store']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/home', [App\Http\Controllers\HomeController::class, 'store']);
 
 # Profile
 Route::get('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profiles.show');
