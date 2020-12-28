@@ -25,6 +25,11 @@ route::get('/', App\Http\Controllers\MainController::class)->name('main');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'store']);
 
+# PostLikes
+Route::post('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'store']);
+Route::delete('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'destroy']);
+
+
 # Profile
 Route::get('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profiles.show');
 Route::get('/profiles/{user:username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit']);

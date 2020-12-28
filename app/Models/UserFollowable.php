@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-trait Followable
+trait UserFollowable
 {
     public function follow(User $user)
     {

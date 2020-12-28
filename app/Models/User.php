@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Followable;
+    use HasFactory, Notifiable, UserFollowable;
 
     /**
      * The attributes that are mass assignable.
@@ -61,6 +61,11 @@ class User extends Authenticatable
             ->latest();
     }
 
+    public function likes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function timeline()
     {
         $ids = $this->follows()->pluck('id');
@@ -68,6 +73,7 @@ class User extends Authenticatable
 
         return Post::query()->whereIn('user_id', $ids)
             ->orWhere('user_id', $this->id)
+            ->withLikes()
             ->latest()
             ->paginate(6);
     }

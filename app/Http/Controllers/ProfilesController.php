@@ -21,6 +21,7 @@ class ProfilesController extends Controller
             'user' => $user,
             'posts' => $user
                 ->posts()
+                ->withLikes()
                 ->paginate(5),
         ]);
     }
