@@ -12,7 +12,7 @@
     </div>
     <div>
         <a href="#">
-            <p class="font-bold mb-2">{{ $post->user->name }} - {{ $post->created_at->diffForHumans()}}</p>
+            <p class="font-bold mb-2">{{ $post->user->name }} • {{ $post->created_at->diffForHumans()}}</p>
         </a>
 
         <p class="text-sm mb-3">{{ $post->body }}</p>
