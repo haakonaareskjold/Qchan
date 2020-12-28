@@ -15,11 +15,11 @@
             </div>
 
             <div class="flex">
-                @if( auth()->user()->is($user))
+                @if( current_user()->is($user))
                     <a href="{{ $user->path('edit') }}" class="bg-blue-500 rounded-full shadow py-2 px-2 text-white">Edit profile</a>
                 @endif
 
-                {{--<x-follow-button :user="$user"></x-follow-button>--}}
+                <x-follow-button :user="$user"></x-follow-button>
             </div>
         </div>
         <img

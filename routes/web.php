@@ -25,3 +25,6 @@ Route::post('/', [App\Http\Controllers\HomeController::class, 'store']);
 Route::get('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profiles.show');
 Route::get('/profiles/{user:username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit']);
 Route::patch('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'update']);
+
+# Follow store
+Route::post('/profiles/{user:username}/follow', App\Http\Controllers\FollowsController::class);
