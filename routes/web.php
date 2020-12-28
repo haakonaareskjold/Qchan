@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,6 @@ Route::patch('/profiles/{user:username}', [App\Http\Controllers\ProfilesControll
 
 # Follow store
 Route::post('/profiles/{user:username}/follow', App\Http\Controllers\FollowsController::class);
+
+# Explore
+route::get('/explore', App\Http\Controllers\ExploreController::class)->name('explore');
