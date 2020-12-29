@@ -26,8 +26,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'store']);
 
 # PostLikes
-Route::post('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'store']);
-Route::delete('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'destroy']);
+Route::post('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'storeLike']);
+Route::post('/posts/{post}/dislike', [\App\Http\Controllers\PostLikesController::class, 'storeDislike']);
+Route::delete('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'Destroy']);
+Route::delete('/posts/{post}/dislike',[\App\Http\Controllers\PostLikesController::class, 'Destroy']);
 
 
 # Profile

@@ -21,6 +21,9 @@
     <div class="flex">
             <form method="POST" action="/posts/{{$post->id}}/like">
                 @csrf
+                @if($post->isLikedBy(current_user()))
+                    @method('delete')
+                @endif
 
                 <div class="flex items-center mr-4">
                     <button type="submit">
@@ -36,9 +39,11 @@
                 </div>
             </form>
 
-            <form method="POST" action="/posts/{{$post->id}}/like">
+            <form method="POST" action="/posts/{{$post->id}}/dislike">
                 @csrf
-                @method('DELETE')
+                @if($post->isDislikedBy(current_user()))
+                    @method('delete')
+                @endif
 
                 <div class="flex items-center mr-4">
                     <button type="submit">

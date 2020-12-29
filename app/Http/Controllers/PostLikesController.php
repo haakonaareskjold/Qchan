@@ -12,16 +12,24 @@ class PostLikesController extends Controller
         $this->middleware('auth');
     }
 
-    public function store (Post $post)
+    public function storeLike (Post $post)
     {
         $post->like(current_user());
 
         return back();
     }
 
-    public function destroy(Post $post)
+    public function StoreDislike(Post $post)
     {
         $post->dislike(current_user());
+
+        return back();
+    }
+
+
+    public function Destroy(Post $post): \Illuminate\Http\RedirectResponse
+    {
+        $post->unlike();
 
         return back();
     }

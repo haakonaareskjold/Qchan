@@ -56,4 +56,9 @@ trait PostLikeable
     {
         return $this->like($user, false);
     }
+
+    public function unlike(?User $user = null)
+    {
+        $this->likes->where('user_id', $user->id ?? auth()->id())->first()->delete();
+    }
 }
