@@ -65,6 +65,8 @@ return [
     |
     */
 
+    # TODO docker symlink
+    // ln -s /var/www/storage/app/public/avatars public/avatars
     'links' => [
         public_path('avatars') => storage_path('app/public/avatars'),
     ],
