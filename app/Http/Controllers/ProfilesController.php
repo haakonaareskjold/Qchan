@@ -18,12 +18,11 @@ class ProfilesController extends Controller
     {
 
         return view('profiles.show',[
-            'user' => $user,
             'posts' => $user
                 ->posts()
                 ->withLikes()
                 ->paginate(5),
-        ]);
+        ], compact('user'));
     }
 
     public function edit(User $user)

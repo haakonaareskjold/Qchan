@@ -19,7 +19,7 @@ class PostLikesController extends Controller
         return back();
     }
 
-    public function StoreDislike(Post $post)
+    public function storeDislike(Post $post)
     {
         $post->dislike(current_user());
 
@@ -27,7 +27,7 @@ class PostLikesController extends Controller
     }
 
 
-    public function Destroy(Post $post): \Illuminate\Http\RedirectResponse
+    public function destroy(Post $post): \Illuminate\Http\RedirectResponse
     {
         $post->unlike();
 

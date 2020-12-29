@@ -1,6 +1,6 @@
 <div class="flex p-4 {{ $loop->last ? '' : 'border-b border-b-gray-400' }}">
     <div class="mr-2 flex-shrink-0">
-        <a href="#">
+        <a href="{{ route('profiles.show', $post->user) }}">
             <img
                 src="{{ $post->user->avatar }}"
                 alt=""
@@ -11,7 +11,7 @@
         </a>
     </div>
     <div>
-        <a href="#">
+        <a href="{{ route('profiles.show', $post->user) }}">
             <p class="font-bold mb-2">{{ $post->user->name }} • {{ $post->created_at->diffForHumans()}}</p>
         </a>
 
@@ -58,6 +58,17 @@
                     {{ - $post->dislikes ?: 0 }}
                 </div>
             </form>
-        </div>
+        @if( current_user()->is($user))
+            <div>
+                <form action="{{ route('post.destroy', $post->id)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <a class="ml-6 mr-6 btn btn-primary" target="_blank" href="{{ ('/posts/' . $post->id . '/edit') }}">Edit</a>
+                    <button class="ml-2 btn btn-primary" type="submit">Delete</button>
+                </form>
+            </div>
+        @endif
+
+    </div>
     </div>
 </div>

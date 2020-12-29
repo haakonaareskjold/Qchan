@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,13 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(User $user)
     {
         return view('qchan._index', [
             'posts' => auth()
                 ->user()
                 ->timeline()
-        ]);
+        ], compact('user'));
     }
 
     public function store()
@@ -41,5 +42,13 @@ class HomeController extends Controller
         ]);
 
         return redirect()->route('home');
+    }
+
+    public function destroy(Post $post)
+    {
+        if ($post->user_id == Auth::user()->id) {
+            $post->delete();
+        }
+        return back();
     }
 }
