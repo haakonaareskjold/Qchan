@@ -31,9 +31,15 @@
             style="width: 100px; left: calc(50% - 75px); top: 300px"
         >
         <p class="text-sm">
-            I am the creator of Qchan :)
+            @if(!is_null($user->description))
+                {{ $user->description }}
+            @else
+                Hi, I am {{ $user->name }}
+            @endif
+
         </p>
     </header>
+    @include('qchan._publish-post-panel')
 
     @include('qchan._timeline', ['posts' => $posts])
 

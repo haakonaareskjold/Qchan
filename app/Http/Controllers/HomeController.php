@@ -41,7 +41,7 @@ class HomeController extends Controller
             'body' => $attributes['body']
         ]);
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function destroy(Post $post)

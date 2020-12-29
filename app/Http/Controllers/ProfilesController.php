@@ -37,11 +37,12 @@ class ProfilesController extends Controller
         $this->middleware('can:edit,user');
 
         $attributes = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:70'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'username' => ['required', 'string', 'max:16', 'min:5', 'alpha_dash', Rule::unique('users')->ignore($user)],
+            'description' => ['nullable', 'string', 'max:160'],
+            'username' => ['required', 'string', 'max:20', 'min:5', 'alpha_dash', Rule::unique('users')->ignore($user)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
-            'password' => ['required', 'string', 'min:6', 'max:255', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'max:2000', 'confirmed'],
         ]);
 
 
