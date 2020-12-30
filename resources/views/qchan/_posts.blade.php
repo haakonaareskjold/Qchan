@@ -60,7 +60,7 @@
             </form>
         @if( current_user()->is($user))
             <div>
-                <form action="{{ route('post.destroy', $post->id)}}" method="post">
+                <form action="{{ route('posts.destroy', $post->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <a class="ml-6 mr-6 btn btn-primary" target="_blank" href="{{ ('/posts/' . $post->id . '/edit') }}">Edit</a>

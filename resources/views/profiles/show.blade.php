@@ -38,8 +38,8 @@
             @endif
         </div>
     </header>
+    @if( current_user()->is($user))
     @include('qchan._publish-post-panel')
-
+    @endif
     @include('qchan._timeline', ['posts' => $posts])
-
 </x-App>
