@@ -1,11 +1,10 @@
 <x-App>
     <header class="mb-6 relative">
         <img
-            src="{{ asset('background.jpg')}}"
+            src="{{ $user->banner }}"
             alt="header picture"
-            class="shadow-lg"
-            width="700px"
-            height="200px"
+            class="shadow-lg object-contain h-64"
+            style="display: block; margin-left: auto; margin-right: auto"
         >
 
         <div class="flex justify-between items-center mb-2">
@@ -16,10 +15,11 @@
 
             <div class="flex">
                 @if( current_user()->is($user))
-                    <a href="{{ $user->path('edit') }}" class="bg-blue-500 rounded-full shadow py-2 px-2 text-white">Edit profile</a>
-                @endif
+                    <a href="{{ $user->path('edit') }}" class="bg-blue-500 rounded-full shadow py-2 px-2 text-white mr-2">Edit profile</a>
+                @else
 
                 <x-follow-button :user="$user"></x-follow-button>
+                @endif
             </div>
         </div>
         <img
@@ -27,17 +27,16 @@
             width="40"
             height="40"
             alt="header picture"
-            class="rounded-full mr-2 absolute"
-            style="width: 100px; left: calc(50% - 75px); top: 300px"
+            class="mr-2 absolute rounded-full object-contain"
+            style="width: 100px; left: calc(50% - 50px); top: 165px"
         >
-        <p class="text-sm">
+        <div class="text-sm">
             @if(!is_null($user->description))
-                {{ $user->description }}
+            <p class="font-semibold">{{ $user->description }}</p>
             @else
-                Hi, I am {{ $user->name }}
+            <p>Hi, I am {{ $user->name }}</p>
             @endif
-
-        </p>
+        </div>
     </header>
     @include('qchan._publish-post-panel')
 

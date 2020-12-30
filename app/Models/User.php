@@ -50,6 +50,12 @@ class User extends Authenticatable
         return asset($value ?: $default);
     }
 
+    public function getBannerAttribute($value)
+    {
+        $default = 'background.jpg';
+        return asset($value ?: $default);
+    }
+
     public function path($append = '')
     {
         $path = route('profiles.show', $this->username);

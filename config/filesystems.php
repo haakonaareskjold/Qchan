@@ -69,6 +69,7 @@ return [
     // ln -s /var/www/storage/app/public/avatars public/avatars
     'links' => [
         public_path('avatars') => storage_path('app/public/avatars'),
+        public_path('banners') => storage_path('app/public/banners')
     ],
 
 ];
