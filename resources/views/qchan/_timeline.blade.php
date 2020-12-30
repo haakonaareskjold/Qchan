@@ -2,7 +2,7 @@
     @forelse($posts as $post)
         @include('qchan._posts')
     @empty
-        <p class="p-4">No Tweets yet</p>
+        <p class="p-4">No Posts yet</p>
     @endforelse
         {{ $posts->links() }}
 </div>
