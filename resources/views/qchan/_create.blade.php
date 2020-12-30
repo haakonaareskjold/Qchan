@@ -17,7 +17,7 @@
                 height="50"
                 width="50"
             >
-            <button type="submit" class="bg-blue-300 rounded-lg shadow py-2 px-2 text-white"
+            <button type="submit" class="bg-blue-500 rounded-lg shadow py-2 px-2 text-white"
             >
                 Post
             </button>

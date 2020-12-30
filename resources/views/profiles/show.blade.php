@@ -39,7 +39,7 @@
         </div>
     </header>
     @if( current_user()->is($user))
-    @include('qchan._publish-post-panel')
+    @include('qchan._create')
     @endif
     @include('qchan._timeline', ['posts' => $posts])
 </x-App>
