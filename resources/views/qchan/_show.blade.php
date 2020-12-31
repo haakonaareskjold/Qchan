@@ -1,5 +1,8 @@
 <x-app>
-    <h1>Posted by : {{$post->user->name}}</h1>
-    <br>
-    <p>Post: {{$post->body}}</p>
+    <div class="border border-gray-300 rounded-lg">
+
+        <h1>{{$post->user->name}}</h1>
+        <br>
+        <p>{{$post->body}}</p>
+    </div>
 </x-app>

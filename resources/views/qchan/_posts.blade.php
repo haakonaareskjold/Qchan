@@ -12,10 +12,15 @@
     </div>
     <div>
         <a href="{{ route('posts.show', $post->id) }}">
-            <p class="font-bold mb-2">{{ $post->user->name }} • {{ $post->created_at->diffForHumans()}}</p>
+            <p class="font-bold mb-2">{{ $post->user->name }} •
+                @if( $post->created_at != $post->updated_at) <u>Post edited</u> {{ $post->updated_at->diffForHumans()}}
+                @else
+                {{ $post->created_at->diffForHumans()}}
+                @endif
         </a>
 
         <p class="text-sm mb-3">{{ $post->body }}</p>
+
 
 
     <div class="flex">
