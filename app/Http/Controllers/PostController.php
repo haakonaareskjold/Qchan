@@ -40,14 +40,14 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $attributes = request()->validate(['body' => 'required|max:255']);
 
-        Post::create([
+        $post->create([
             'user_id' => auth()->id(),
             'body' => $attributes['body']
         ]);
@@ -59,34 +59,42 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(Post $post)
     {
-        //
+        return view('qchan._show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Post $post
+     * @param User $user
+     * @return bool|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Post $post)
     {
-        //
+       return view('qchan._edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @param Request $request
+     * @return bool|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Post $post)
+    public function update(Post $post, Request $request)
     {
-        //
+        $attributes = $request->validate(['body' => 'required|max:255']);
+
+        $post->update([
+            'user_id' => auth()->id(),
+            'body' => $attributes['body']
+        ]);
+
+        return redirect(route('posts.show', $post->id));
     }
 
     /**

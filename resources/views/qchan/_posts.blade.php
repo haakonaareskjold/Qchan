@@ -11,7 +11,7 @@
         </a>
     </div>
     <div>
-        <a href="{{ route('profiles.show', $post->user) }}">
+        <a href="{{ route('posts.show', $post->id) }}">
             <p class="font-bold mb-2">{{ $post->user->name }} • {{ $post->created_at->diffForHumans()}}</p>
         </a>
 
