@@ -30,7 +30,7 @@ class ReplyController extends Controller
      * @param Post $post
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create(Post $post)
+    public function create(Post $post, Reply $reply)
     {
         return view('qchan._show', compact('post'));
     }
@@ -47,14 +47,14 @@ class ReplyController extends Controller
     {
         $attributes = $request->validate(['body' => 'required|max:255']);
 
-        $reply->create([
-            'user_id' => auth()->id(),
-            'post_id' => $request->post->id,
-            'body' => $attributes['body']
-        ]);
-        dd($reply);
 
-        return redirect(route('replies.create', $reply->id));
+        $reply->create([
+            'body' => $attributes['body'],
+            'post_id' => $post->id,
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect(route('replies.create', $post->id));
     }
 
     /**

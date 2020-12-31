@@ -74,6 +74,9 @@
             </div>
         @endif
         <a class="ml-6 mr-6 btn btn-primary" href="{{route('replies.create', $post->id)}}" >Reply</a>
+        @if( $reply->post_id !== $post->id)
+            replies exists
+        @endif
     </div>
     </div>
 </div>

@@ -9,11 +9,7 @@ class Reply extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'posts_id',
-        'body'
-        ];
+    protected $guarded = [];
 
     public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

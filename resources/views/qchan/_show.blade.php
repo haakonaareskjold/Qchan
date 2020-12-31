@@ -1,7 +1,9 @@
 <x-app>
     <div class="border border-gray-300 rounded-lg">
 
-        <h1>{{$post->user->name}}</h1>
+        <p class="m-0"><strong>
+                {{ $post->user->name }} said...
+            </strong></p>
         <br>
         <p>{{$post->body}}</p>
     </div>

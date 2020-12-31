@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,13 +19,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(User $user, Reply $reply)
     {
         return view('qchan._index', [
             'posts' => auth()
                 ->user()
                 ->timeline()
-        ], compact('user'));
+        ], compact('user', 'reply'));
     }
 
     /**
