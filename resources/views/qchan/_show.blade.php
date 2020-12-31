@@ -5,4 +5,5 @@
         <br>
         <p>{{$post->body}}</p>
     </div>
+    @include('qchan.replies._index')
 </x-app>

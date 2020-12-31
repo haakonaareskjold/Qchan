@@ -68,12 +68,12 @@
                 <form action="{{ route('posts.destroy', $post->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <a class="ml-6 mr-6 btn btn-primary" target="_blank" href="{{ ('/posts/' . $post->id . '/edit') }}">Edit</a>
-                    <button class="ml-2 btn btn-primary" type="submit">Delete</button>
+                    <a class="ml-6 mr-6 btn btn-primary" href="{{ ('/posts/' . $post->id . '/edit') }}">Edit</a>
+                    <button class="ml-2 mr-6 btn btn-primary" type="submit">Delete</button>
                 </form>
             </div>
         @endif
-
+        <a class="ml-6 mr-6 btn btn-primary" href="{{route('replies.create', $post->id)}}" >Reply</a>
     </div>
     </div>
 </div>

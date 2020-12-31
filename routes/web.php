@@ -24,6 +24,9 @@ route::get('/', App\Http\Controllers\MainController::class)->name('main');
 # Posts
 Route::resource('posts', \App\Http\Controllers\PostController::class);
 
+# Replies
+Route::get('/posts/{post}/replies', [\App\Http\Controllers\ReplyController::class, 'create'])->name('replies.create');
+Route::post('/posts/{post}/replies', [\App\Http\Controllers\ReplyController::class, 'store'])->name('replies.store');
 
 # PostLikes
 Route::post('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'storeLike']);
