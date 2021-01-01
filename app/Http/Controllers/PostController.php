@@ -19,13 +19,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index(User $user, Reply $reply)
+    public function index(User $user)
     {
         return view('qchan._index', [
             'posts' => auth()
                 ->user()
                 ->timeline()
-        ], compact('user', 'reply'));
+        ], compact('user', ));
     }
 
     /**

@@ -74,9 +74,12 @@
             </div>
         @endif
         <a class="ml-6 mr-6 btn btn-primary" href="{{route('replies.create', $post->id)}}" >Reply</a>
-        @if( $reply->post_id !== $post->id)
-            replies exists
+
+        @foreach( $post->replies as $reply)
+        @if ($reply->post_id == $post->id)
+           there are replies
         @endif
+        @endforeach
     </div>
     </div>
 </div>

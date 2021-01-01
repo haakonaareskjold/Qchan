@@ -30,7 +30,7 @@ class ReplyController extends Controller
      * @param Post $post
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create(Post $post, Reply $reply)
+    public function create(Post $post)
     {
         return view('qchan._show', compact('post'));
     }
