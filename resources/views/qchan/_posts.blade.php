@@ -77,7 +77,7 @@
 
         @foreach( $post->replies as $reply)
         @if ($reply->post_id == $post->id)
-           there are replies
+            {{ count($post->replies)}}
         @endif
         @endforeach
     </div>
