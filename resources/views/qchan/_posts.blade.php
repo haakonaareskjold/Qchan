@@ -69,19 +69,28 @@
                 <form action="{{ route('posts.destroy', $post->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <a class="ml-6 mr-6 btn btn-primary" href="{{ ('/posts/' . $post->id . '/edit') }}">Edit</a>
-                    <button class="ml-2 mr-6 btn btn-primary" type="submit">Delete</button>
+                    <a class="mr-4 ml-4 btn btn-primary" href="{{ ('/posts/' . $post->id . '/edit') }}">Edit</a>
+                    <button class="mr-4 ml-4 btn btn-primary" type="submit">Delete</button>
                 </form>
             </div>
         @endif
-        <a class="btn btn-primary" href="{{route('replies.create', $post->id)}}" >Reply</a>
+        <a class="btn btn-primary mr-4 ml-4" href="{{route('replies.create', $post->id)}}" >Reply</a>
 
         @foreach( $post->replies as $reply)
             @if ($reply->post_id == $post->id)
             @endif
         @endforeach
         @if (!empty(count($post->replies)))
-            <button class="btn btn-primary ml-2 mr-2">{{ count($post->replies) }}</button>
+                <a class="btn btn-primary">
+                    <svg viewBox="0 0 20 20" class="w-4">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g class="fill-current">
+                                <path d="M15,17 L15,14.009763 C15,11.795232 13.2081782,10 10.9976305,10 L8,10 L8,15 L2,9 L8,3 L8,8 L10.9946916,8 C14.3113318,8 17,10.6930342 17,14 L17,17 L15,17 L15,17 Z" id="Combined-Shape"></path>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+            <a class="btn btn-primary" href="{{route('replies.create', $post->id)}}">{{ count($post->replies) }}</a>
         @endif
     </div>
     </div>
