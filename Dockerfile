@@ -20,9 +20,6 @@ RUN apk add --no-cache \
     libpng-dev \
     libzip-dev \
     make \
-    mysql-client \
-    nodejs \
-    nodejs-npm \
     oniguruma-dev \
     yarn \
     openssh-client \
