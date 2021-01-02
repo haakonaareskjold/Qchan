@@ -61,4 +61,4 @@ deploy:
     - docker-compose -f docker-compose.deploy.yml down
     - docker-compose -f docker-compose.deploy.yml up -d --force-recreate
   after_script:
-    - docker exec qchan_api_1 php artisan migrate
+    - docker exec qchan_api_1 php artisan migrate --force
