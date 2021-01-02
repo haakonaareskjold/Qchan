@@ -32,7 +32,7 @@ RUN apk add --no-cache \
     supervisor \
     zlib-dev
 
-RUN docker-php-ext-install  pdo pdo_pgsql mbstring zip exif pcntl
+RUN docker-php-ext-install pdo pdo_pgsql mbstring zip exif pcntl
 
  # Adding user
 RUN adduser \
