@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/var/www
-      - storage:/var/www/storage/app/public
+      - ./storage/app:/var/www/storage/app
     networks:
       - bridge
 
@@ -41,6 +41,4 @@ networks:
 
 volumes:
   postgres:
-    driver: local
-  storage:
     driver: local
