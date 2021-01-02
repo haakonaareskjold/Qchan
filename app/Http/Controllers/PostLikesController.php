@@ -12,7 +12,7 @@ class PostLikesController extends Controller
         $this->middleware('auth');
     }
 
-    public function storeLike (Post $post)
+    public function storeLike(Post $post)
     {
         $post->like(current_user());
 

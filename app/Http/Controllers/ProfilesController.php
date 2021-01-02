@@ -14,10 +14,10 @@ class ProfilesController extends Controller
         $this->middleware('auth');
     }
 
-    public function show (User $user)
+    public function show(User $user)
     {
 
-        return view('profiles.show',[
+        return view('profiles.show', [
             'posts' => $user
                 ->posts()
                 ->withLikes()
@@ -49,11 +49,11 @@ class ProfilesController extends Controller
 
         $attributes['password'] =  Hash::make($attributes['password']);
 
-        if(request('avatar')) {
+        if (request('avatar')) {
             $attributes['avatar'] = request('avatar')->store('avatars');
         }
 
-        if(request('banner')) {
+        if (request('banner')) {
             $attributes['banner'] = request('banner')->store('banners');
         }
 

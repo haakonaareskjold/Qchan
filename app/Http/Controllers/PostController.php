@@ -26,7 +26,7 @@ class PostController extends Controller
             'posts' => auth()
                 ->user()
                 ->timeline()
-        ], compact('user', ));
+        ], compact('user'));
     }
 
     /**
@@ -77,7 +77,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-       return view('qchan._edit', compact('post'));
+        return view('qchan._edit', compact('post'));
     }
 
     /**
