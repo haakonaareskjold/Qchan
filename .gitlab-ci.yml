@@ -15,8 +15,6 @@ composer:
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
-    - ln -s /var/www/storage/app/public/avatars public/avatars
-    - ln -s /var/www/storage/app/public/banners public/banners
   cache:
     key: ${CI_COMMIT_REF_SLUG}-composer
     paths:
@@ -62,3 +60,5 @@ deploy:
     - docker-compose -f docker-compose.deploy.yml up -d --force-recreate
   after_script:
     - docker exec qchan_api_1 php artisan migrate --force
+    - docker exec qchan_api_1 php ln -s /var/www/storage/app/public/avatars public/avatars
+    - docker exec qchan_api_1 php ln -s /var/www/storage/app/public/banners public/banners
