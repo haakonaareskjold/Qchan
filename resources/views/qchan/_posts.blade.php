@@ -23,6 +23,7 @@
 
 
 
+
     <div class="flex">
             <form method="POST" action="/posts/{{$post->id}}/like">
                 @csrf
@@ -73,13 +74,15 @@
                 </form>
             </div>
         @endif
-        <a class="ml-6 mr-6 btn btn-primary" href="{{route('replies.create', $post->id)}}" >Reply</a>
+        <a class="btn btn-primary" href="{{route('replies.create', $post->id)}}" >Reply</a>
 
         @foreach( $post->replies as $reply)
-        @if ($reply->post_id == $post->id)
-            {{ count($post->replies)}}
-        @endif
+            @if ($reply->post_id == $post->id)
+            @endif
         @endforeach
+        @if (!empty(count($post->replies)))
+            <button class="btn btn-primary ml-2 mr-2">{{ count($post->replies) }}</button>
+        @endif
     </div>
     </div>
 </div>
