@@ -6,6 +6,8 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
+                        <p class="mt-5 mb-5 text-center font-black">Qchan is a non-profit app that is for educational purposes only, do not sign up if you disagree! </p>
+
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
