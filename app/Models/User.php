@@ -52,7 +52,7 @@ class User extends Authenticatable
         if(Storage::disk('spaces')->exists($value)) {
            return asset( Storage::disk('spaces')->url($value));
         } else {
-            return asset( $default);
+            return asset($value ?: $default);
         }
     }
 
@@ -63,7 +63,7 @@ class User extends Authenticatable
         if(Storage::disk('spaces')->exists($value)) {
             return asset( Storage::disk('spaces')->url($value));
         } else {
-            return asset( $default);
+            return asset($value ?: $default);
         }
     }
 
