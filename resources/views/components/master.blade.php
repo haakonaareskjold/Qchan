@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="http://unpkg.com/turbolinks"></script>
+    <script src="https://unpkg.com/turbolinks"></script>
 
 
     <!-- Fonts -->
