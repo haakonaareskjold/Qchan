@@ -39,7 +39,7 @@
                 <ul class="navbar-nav mr-auto">
 
                 </ul>
-                <ul class="navbar-nav align-middle"><img src="{{ asset('logo.png')}}"width="40px" height="40px" alt="logo"></ul>
+                <ul class="navbar-nav align-middle"><x-Git-Plug /></ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
