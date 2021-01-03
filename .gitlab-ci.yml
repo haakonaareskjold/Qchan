@@ -12,6 +12,7 @@ composer:
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
+    - echo "APP_ENV=local" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
