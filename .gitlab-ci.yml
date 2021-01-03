@@ -29,6 +29,16 @@ composer:
     when: always
 
 
+codestyle:
+  stage: test
+  tags:
+    - dev
+  only:
+    - staging
+  dependencies: []
+  script:
+    - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
+
 deploy:
   stage: deploy
   only:

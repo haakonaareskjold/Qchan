@@ -20,7 +20,7 @@ class User extends Authenticatable
         'name',
         'username',
         'avatar',
-        'banner',
+        'background',
         'description',
         'email',
         'password',
@@ -56,7 +56,7 @@ class User extends Authenticatable
         }
     }
 
-    public function getBannerAttribute($value)
+    public function getBackgroundAttribute($value)
     {
         $default = 'background.jpg';
 

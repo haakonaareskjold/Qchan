@@ -1,7 +1,7 @@
 <x-App>
     <header class="mb-6 relative">
         <img
-            src="{{ $user->banner }}"
+            src="{{ $user->background }}"
             alt="header picture"
             class="shadow-lg object-contain h-64"
             style="display: block; margin-left: auto; margin-right: auto"

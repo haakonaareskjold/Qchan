@@ -75,10 +75,10 @@
 
         <div class="mb-6">
 
-            <label class="block mb-2 uppercase font-bold text-cs text-gray-700" for="banner">Banner</label>
-            <input class="border border-gray-400 p-2 w-full" type="file" name="banner" id="banner">
+            <label class="block mb-2 uppercase font-bold text-cs text-gray-700" for="background">Background</label>
+            <input class="border border-gray-400 p-2 w-full" type="file" name="background" id="background">
 
-            @error('banner')
+            @error('background')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
