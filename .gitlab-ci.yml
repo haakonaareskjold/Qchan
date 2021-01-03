@@ -15,6 +15,7 @@ composer:
     - echo "FILESYSTEM_DRIVER=spaces" >> .env
     - echo "${SPACES_KEY}" >> .env
     - echo "${SPACES_SECRET}" >> .env
+    - echo "APP_URL=https://qchan.haakon.wtf/" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
