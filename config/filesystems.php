@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +52,16 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'spaces' => [
+            'driver' => 's3',
+            'key' => env('SPACES_KEY'),
+            'secret' => env('SPACES_SECRET'),
+            'region' => env('SPACES_REGION'),
+            'bucket' => env('SPACES_BUCKET'),
+            'endpoint' => env('SPACES_ENDPOINT'),
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*
@@ -65,8 +75,6 @@ return [
     |
     */
 
-    # TODO docker symlink
-    // ln -s /var/www/storage/app/public/avatars public/avatars
     'links' => [
         public_path('avatars') => storage_path('app/public/avatars'),
         public_path('banners') => storage_path('app/public/banners')

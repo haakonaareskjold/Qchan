@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -47,14 +48,25 @@ class User extends Authenticatable
     public function getAvatarAttribute($value)
     {
         $default = 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
-        return asset($value ?: $default);
+
+        if(Storage::disk('spaces')->exists($value)) {
+           return asset( Storage::disk('spaces')->url($value));
+        } else {
+            return asset( $default);
+        }
     }
 
     public function getBannerAttribute($value)
     {
         $default = 'background.jpg';
-        return asset($value ?: $default);
+
+        if(Storage::disk('spaces')->exists($value)) {
+            return asset( Storage::disk('spaces')->url($value));
+        } else {
+            return asset( $default);
+        }
     }
+
 
     public function path($append = '')
     {
