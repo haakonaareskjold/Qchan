@@ -6,12 +6,15 @@ stages:
 composer:
   stage: build
   tags:
-    - staging
+    - production
   only:
-    - staging
+    - production
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
+    - echo "FILESYSTEM_DRIVER=spaces" >> .env
+    - echo "${SPACES_KEY}" >> .env
+    - echo "${SPACES_SECRET}" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
@@ -31,9 +34,9 @@ composer:
 codestyle:
   stage: test
   tags:
-    - staging
+    - production
   only:
-    - staging
+    - production
   dependencies: []
   script:
     - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
@@ -41,14 +44,12 @@ codestyle:
 deploy:
   stage: deploy
   only:
-    - staging
+    - production
   tags:
-    - staging
+    - production
   image: tiangolo/docker-with-compose
   script:
-    - docker-compose -f docker-compose.staging.yml down
-    - docker-compose -f docker-compose.staging.yml up -d --force-recreate
+    - docker-compose -f docker-compose.prod.yml down
+    - docker-compose -f docker-compose.prod.yml up -d --force-recreate
   after_script:
     - docker exec qchan_api_1 php artisan migrate --force
-    - ln -s /var/www/storage/app/public/avatars public/avatars
-    - ln -s /var/www/storage/app/public/backgrounds public/backgrounds
