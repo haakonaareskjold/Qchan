@@ -12,6 +12,8 @@ composer:
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.docker .env
+    - echo "${SPACES_KEY}" >> .env
+    - echo "${SPACES_SECRET}" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
@@ -26,27 +28,6 @@ composer:
     expire_in: 1 days
     when: always
 
-phpunit:
-  stage: test
-  tags:
-    - dev
-  only:
-    - staging
-  dependencies:
-    - composer
-  script:
-    - phpunit --coverage-text --colors=never
-
-codestyle:
-  stage: test
-  tags:
-    - dev
-  only:
-    - staging
-  dependencies: []
-  script:
-    - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
-
 
 deploy:
   stage: deploy
@@ -56,10 +37,7 @@ deploy:
     - deploy
   image: tiangolo/docker-with-compose
   script:
-    - docker-compose -f docker-compose.deploy.yml build
     - docker-compose -f docker-compose.deploy.yml down
     - docker-compose -f docker-compose.deploy.yml up -d --force-recreate
   after_script:
     - docker exec qchan_api_1 php artisan migrate --force
-    - ln -s /var/www/storage/app/public/avatars public/avatars
-    - ln -s /var/www/storage/app/public/banners public/banners
