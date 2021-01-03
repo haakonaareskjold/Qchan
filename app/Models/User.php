@@ -49,22 +49,14 @@ class User extends Authenticatable
     {
         $default = 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
 
-        if(Storage::disk('spaces')->exists($value)) {
-           return asset( Storage::disk('spaces')->url($value));
-        } else {
-            return asset($value ?: $default);
-        }
+        return $this->fileSystemCheck($value, $default);
     }
 
     public function getBackgroundAttribute($value)
     {
         $default = 'background.jpg';
 
-        if(Storage::disk('spaces')->exists($value)) {
-            return asset( Storage::disk('spaces')->url($value));
-        } else {
-            return asset($value ?: $default);
-        }
+        return $this->fileSystemCheck($value, $default);
     }
 
 
@@ -96,5 +88,23 @@ class User extends Authenticatable
             ->withLikes()
             ->latest()
             ->paginate(6);
+    }
+
+    /**
+     * @param $value
+     * @param string $default
+     * @return string
+     */
+    public function fileSystemCheck($value, string $default): string
+    {
+        if (env('FILESYSTEM_DRIVER') == 'spaces') {
+            if (Storage::disk('spaces')->exists($value)) {
+                return asset(Storage::disk('spaces')->url($value));
+            } else {
+                return asset($default);
+            }
+        } else {
+            return asset($value ?: $default);
+        }
     }
 }

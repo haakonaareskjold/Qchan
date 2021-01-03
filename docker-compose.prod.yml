@@ -9,24 +9,36 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/var/www
+    restart: unless-stopped
     networks:
       - bridge
 
   # Webserver
   nginx:
     image: nginx:1.19.5-alpine
-    ports:
-      - 8000:80
+    restart: unless-stopped
     volumes:
       - .:/var/www
       - ./nginx:/etc/nginx/conf.d
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.qchan.middlewares=redirect-to-https"
+      - "traefik.http.routers.qchan.rule=Host(`qchan.haakon.wtf`)"
+      - "traefik.http.routers.qchan.entrypoints=web"
+      - "traefik.http.routers.qchan-secure.rule=Host(`qchan.haakon.wtf`)"
+      - "traefik.http.routers.qchan-secure.tls=true"
+      - "traefik.http.routers.qchan-secure.tls.certresolver=myresolver"
+      - "traefik.docker.network=traefik-proxy"
     networks:
       - bridge
+      - traefik-proxy
 
   db:
     image: postgres:13.1-alpine
     volumes:
       - postgres:/var/lib/postgresql/data
+    restart: unless-stopped
     environment:
       - 'POSTGRES_PASSWORD=${DB_PASSWORD}'
       - 'POSTGRES_USER=${DB_USERNAME}'
@@ -37,6 +49,8 @@ services:
 networks:
   bridge:
     driver: bridge
+  traefik-proxy:
+    external: true
 
 volumes:
   postgres:
