@@ -1,9 +1,9 @@
 <x-App>
     <div>
-        @forelse($users as $follower)
-            {{$follower->data}}
+        @forelse($notifications as $notification)
+            You followed: {{ implode($notification->data)}}
         @empty
-        no followers yet.
+        no notifications yet.
         @endforelse
     </div>
 </x-App>

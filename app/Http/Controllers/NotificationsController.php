@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class NotificationsController extends Controller
 {
@@ -15,7 +12,12 @@ class NotificationsController extends Controller
 
     public function __invoke()
     {
-        $users = DB::table('notifications')->get()->toArray();
-        return view('components.user-notifications', compact('users'));
+        $notifications = auth()->user()->unreadNotifications;
+
+        $notifications->markAsRead();
+
+        return view('components.user-notifications', [
+            'notifications' => $notifications
+        ]);
     }
 }
