@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+use App\Notifications\FollowerReceived;
+
 trait UserFollowable
 {
     public function follow(User $user)
@@ -35,5 +37,6 @@ trait UserFollowable
     public function toggleFollow(User $user)
     {
         $this->follows()->toggle($user);
+        request()->user()->notify(new FollowerReceived($user));
     }
 }
