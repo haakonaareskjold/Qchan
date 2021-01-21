@@ -1,7 +1,7 @@
 <x-App>
     <div>
         @forelse($notifications as $notification)
-            You followed: {{ implode($notification->data)}}
+            You have been followed by {{ implode($notification->data)}}!
         @empty
         no notifications yet.
         @endforelse

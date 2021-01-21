@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Notifications\FollowerReceived;
+use Illuminate\Support\Facades\Notification;
 
 trait UserFollowable
 {
@@ -22,7 +23,6 @@ trait UserFollowable
     // returns
     public function following(User $user)
     {
-
         return $this->follows()
             ->where('following_user_id', $user->id)
             ->exists();
@@ -37,6 +37,6 @@ trait UserFollowable
     public function toggleFollow(User $user)
     {
         $this->follows()->toggle($user);
-        request()->user()->notify(new FollowerReceived($user));
+        $user->notify(new FollowerReceived(current_user()));
     }
 }
