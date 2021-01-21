@@ -36,7 +36,11 @@ trait UserFollowable
 
     public function toggleFollow(User $user)
     {
-        $this->follows()->toggle($user);
+        if ($this->following($user)) {
+            return $this->unfollow($user);
+        }
+
         $user->notify(new FollowerReceived(current_user()));
+        return $this->follow($user);
     }
 }
