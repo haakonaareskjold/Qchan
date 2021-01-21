@@ -45,3 +45,6 @@ Route::post('/profiles/{user:username}/follow', App\Http\Controllers\FollowsCont
 
 # Explore
 route::get('/explore', App\Http\Controllers\ExploreController::class)->name('explore');
+
+# Notifications
+route::get('/notifications', \App\Http\Controllers\NotificationsController::class)->name('notifications');

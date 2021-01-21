@@ -10,7 +10,7 @@
         </a>
     </li>
     <li>
-        <a href="#" class="font-bold text-lg mb-4 block">
+        <a href="{{ route('notifications') }}" class="font-bold text-lg mb-4 block">
             Notifications
         </a>
     </li>
