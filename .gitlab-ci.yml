@@ -1,6 +1,5 @@
 stages:
     - build
-    - test
     - deploy
 
 composer:
@@ -12,9 +11,9 @@ composer:
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
-    - echo "FILESYSTEM_DRIVER=spaces" >> .env
-    - echo "${SPACES_KEY}" >> .env
-    - echo "${SPACES_SECRET}" >> .env
+    - echo "FILESYSTEM_DRIVER=dropbox" >> .env
+    - echo "${DROPBOX_TOKEN}" >> .env
+    - echo "${DROPBOX_SECRET}" >> .env
     - echo "APP_URL=https://qchan.haakon.wtf/" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
@@ -32,15 +31,6 @@ composer:
     when: always
 
 
-codestyle:
-  stage: test
-  tags:
-    - production
-  only:
-    - production
-  dependencies: []
-  script:
-    - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
 
 deploy:
   stage: deploy
