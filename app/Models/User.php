@@ -97,9 +97,9 @@ class User extends Authenticatable
      */
     public function fileSystemCheck($value, string $default): string
     {
-        if (env('FILESYSTEM_DRIVER') == 'spaces') {
-            if (Storage::disk('spaces')->exists($value)) {
-                return asset(Storage::disk('spaces')->url($value));
+        if (env('FILESYSTEM_DRIVER') == 'dropbox') {
+            if (Storage::disk('dropbox')->exists($value)) {
+                return asset(Storage::disk('dropbox')->url($value));
             } else {
                 return asset($default);
             }
