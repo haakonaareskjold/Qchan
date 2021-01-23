@@ -62,6 +62,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'authorizationToken' => env('DROPBOX_TOKEN'),
+            'appSecret' => env('DROPBOX_SECRET'),
+        ],
+
     ],
 
     /*
