@@ -27,7 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
-    use HasFactory, PostLikeable;
+    use HasFactory;
+    use PostLikeable;
 
     protected $guarded = [];
 

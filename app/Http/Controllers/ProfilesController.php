@@ -61,4 +61,20 @@ class ProfilesController extends Controller
 
         return redirect($user->path());
     }
+
+    public function showDestroy(User $user)
+    {
+        $this->authorize('edit', $user);
+
+        return view('profiles.delete.show', compact('user'));
+    }
+
+    public function destroy(User $user)
+    {
+        auth()->logout();
+
+        $user->delete();
+
+        return redirect(route('main'));
+    }
 }

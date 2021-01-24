@@ -87,6 +87,8 @@
             <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hoved:bg-blue-500">
                 Submit
             </button>
+            <a class="btn-danger text-white rounded py-2 px-4 ml-4" href="{{ route('profiles.showdestroy', current_user())}}">Delete user?</a>
         </div>
     </form>
+
 </x-App>

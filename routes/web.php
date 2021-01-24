@@ -39,6 +39,9 @@ Route::delete('/posts/{post}/dislike',[\App\Http\Controllers\PostLikesController
 Route::get('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profiles.show');
 Route::get('/profiles/{user:username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit']);
 Route::patch('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'update']);
+Route::get('/profiles/{user:username}/destroy', [App\Http\Controllers\ProfilesController::class, 'showDestroy'])->name('profiles.showdestroy');
+Route::delete('/profiles/{user:username}/destroy', [App\Http\Controllers\ProfilesController::class, 'destroy'])->name('profiles.destroy');
+
 
 # Follow store
 Route::post('/profiles/{user:username}/follow', App\Http\Controllers\FollowsController::class);

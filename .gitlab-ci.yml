@@ -40,6 +40,7 @@ test_staging:
   dependencies: []
   script:
     - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
+    - phpcs --standard=PSR12 --extensions=php app/Models/
 
 deploy_staging:
   stage: deploy

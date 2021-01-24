@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, UserFollowable;
+    use HasFactory;
+    use Notifiable;
+    use UserFollowable;
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +49,7 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        $default = 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
+        $default = 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
 
         return $this->fileSystemCheck($value, $default);
     }

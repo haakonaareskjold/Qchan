@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Notifications\FollowerReceived;
 use Illuminate\Support\Facades\Notification;
