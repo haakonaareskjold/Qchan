@@ -61,13 +61,6 @@ return [
             'endpoint' => env('SPACES_ENDPOINT'),
             'visibility' => 'public',
         ],
-
-        'dropbox' => [
-            'driver' => 'dropbox',
-            'authorizationToken' => env('DROPBOX_TOKEN'),
-            'appSecret' => env('DROPBOX_SECRET'),
-        ],
-
     ],
 
     /*

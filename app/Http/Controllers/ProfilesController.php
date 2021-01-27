@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProfilesController extends Controller
@@ -50,11 +51,23 @@ class ProfilesController extends Controller
         $attributes['password'] =  Hash::make($attributes['password']);
 
         if (request('avatar')) {
-            $attributes['avatar'] = request('avatar')->store('avatars');
+            $path = $attributes['avatar'] = Storage::putFileAs(
+                'avatars',
+                request('avatar'),
+                $request->user()->username
+            );
+
+            Storage::disk('s3')->setVisibility($path, 'public');
         }
 
         if (request('background')) {
-            $attributes['background'] = request('background')->store('backgrounds');
+            $path = $attributes['background'] = Storage::putFileAs(
+                'backgrounds',
+                request('background'),
+                $request->user()->username
+            );
+
+            Storage::disk('s3')->setVisibility($path, 'public');
         }
 
         $user->update($attributes);
