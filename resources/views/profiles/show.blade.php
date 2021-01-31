@@ -17,8 +17,11 @@
                 @if( current_user()->is($user) || isAdmin())
                     <a href="{{ $user->path('edit') }}" class="bg-blue-500 rounded-full shadow py-2 px-2 text-white mr-2">Edit profile</a>
                 @else
-                <x-follow-button :user="$user"></x-follow-button>
+                    <x-follow-button :user="$user"></x-follow-button>
                 @endif
+                @if( !current_user()->is($user) && isAdmin())
+                        <x-follow-button :user="$user"></x-follow-button>
+                    @endif
             </div>
         </div>
         <img
