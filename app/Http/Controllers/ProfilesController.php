@@ -55,7 +55,7 @@ class ProfilesController extends Controller
             $path = $attributes['avatar'] = Storage::putFileAs(
                 'avatars',
                 request('avatar'),
-                $request->user()->username
+                $user->username
             );
             if (env('FILESYSTEM_DRIVER') == 's3') {
                 Storage::disk('s3')->setVisibility($path, 'public');
