@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,7 @@ class ProfilesController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $this->middleware('can:edit,user');
+        $this->authorize('edit', $user);
 
         $attributes = $request->validate([
             'name' => ['required', 'string', 'max:70'],
@@ -86,9 +87,14 @@ class ProfilesController extends Controller
 
     public function destroy(User $user)
     {
-        auth()->logout();
-
-        $user->delete();
+        try {
+            $this->authorize('edit', $user);
+            if(!isAdmin()) {
+                auth()->logout();
+            }
+            $user->delete();
+        } catch (AuthorizationException $e) {
+        }
 
         return redirect(route('main'));
     }

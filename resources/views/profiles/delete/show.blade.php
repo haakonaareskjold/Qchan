@@ -1,6 +1,6 @@
 <x-App>
     <p class="alert-danger mt-4 font-weight-bold">If you press the button your user will be permanently deleted!</p>
-    <form method="POST" action="{{ route('profiles.destroy', current_user()) }}">
+    <form method="POST" action="{{ route('profiles.destroy', $user->username) }}">
         @csrf
         @method('delete')
 

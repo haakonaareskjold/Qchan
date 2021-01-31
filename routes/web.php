@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikesController;
+use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\ReplyController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,35 +28,35 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 # Main page
-route::get('/', App\Http\Controllers\MainController::class)->name('main');
+route::get('/', MainController::class)->name('main');
 
 # Posts
-Route::resource('posts', \App\Http\Controllers\PostController::class);
+Route::resource('posts', PostController::class);
 
 # Replies
-Route::get('/posts/{post}/replies', [\App\Http\Controllers\ReplyController::class, 'create'])->name('replies.create');
-Route::post('/posts/{post}/replies', [\App\Http\Controllers\ReplyController::class, 'store'])->name('replies.store');
+Route::get('/posts/{post}/replies', [ReplyController::class, 'create'])->name('replies.create');
+Route::post('/posts/{post}/replies', [ReplyController::class, 'store'])->name('replies.store');
 
 # PostLikes
-Route::post('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'storeLike']);
-Route::post('/posts/{post}/dislike', [\App\Http\Controllers\PostLikesController::class, 'storeDislike']);
-Route::delete('/posts/{post}/like', [\App\Http\Controllers\PostLikesController::class, 'destroy']);
-Route::delete('/posts/{post}/dislike',[\App\Http\Controllers\PostLikesController::class, 'destroy']);
+Route::post('/posts/{post}/like', [PostLikesController::class, 'storeLike']);
+Route::post('/posts/{post}/dislike', [PostLikesController::class, 'storeDislike']);
+Route::delete('/posts/{post}/like', [PostLikesController::class, 'destroy']);
+Route::delete('/posts/{post}/dislike',[PostLikesController::class, 'destroy']);
 
 
 # Profile
-Route::get('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profiles.show');
-Route::get('/profiles/{user:username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit']);
-Route::patch('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'update']);
-Route::get('/profiles/{user:username}/destroy', [App\Http\Controllers\ProfilesController::class, 'showDestroy'])->name('profiles.showdestroy');
-Route::delete('/profiles/{user:username}/destroy', [App\Http\Controllers\ProfilesController::class, 'destroy'])->name('profiles.destroy');
+Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profiles.show');
+Route::get('/profiles/{user:username}/edit', [ProfilesController::class, 'edit']);
+Route::patch('/profiles/{user:username}', [ProfilesController::class, 'update']);
+Route::get('/profiles/{user:username}/destroy', [ProfilesController::class, 'showDestroy'])->name('profiles.showdestroy');
+Route::delete('/profiles/{user:username}/destroy', [ProfilesController::class, 'destroy'])->name('profiles.destroy');
 
 
 # Follow store
-Route::post('/profiles/{user:username}/follow', App\Http\Controllers\FollowsController::class);
+Route::post('/profiles/{user:username}/follow', FollowsController::class);
 
 # Explore
-route::get('/explore', App\Http\Controllers\ExploreController::class)->name('explore');
+route::get('/explore', ExploreController::class)->name('explore');
 
 # Notifications
-route::get('/notifications', \App\Http\Controllers\NotificationsController::class)->name('notifications');
+route::get('/notifications', NotificationsController::class)->name('notifications');

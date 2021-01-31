@@ -13,6 +13,9 @@ class User extends Authenticatable
     use Notifiable;
     use UserFollowable;
 
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +27,7 @@ class User extends Authenticatable
         'avatar',
         'background',
         'description',
+        'type',
         'email',
         'password',
     ];
@@ -108,5 +112,10 @@ class User extends Authenticatable
         } else {
             return asset($value ?: $default);
         }
+    }
+
+    public function adminStatus()
+    {
+        return $this->type === self::ADMIN_TYPE;
     }
 }
