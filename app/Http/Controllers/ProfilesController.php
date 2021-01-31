@@ -89,7 +89,7 @@ class ProfilesController extends Controller
     {
         try {
             $this->authorize('edit', $user);
-            if(!isAdmin()) {
+            if (!isAdmin()) {
                 auth()->logout();
             }
             $user->delete();
