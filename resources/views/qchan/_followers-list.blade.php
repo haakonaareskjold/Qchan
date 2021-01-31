@@ -5,7 +5,7 @@
         @forelse(current_user()->follows as $user)
             <li class="mb-4">
                 <div>
-                    <a class="flex items-center text-sm" href="{{ route('profiles.show', $user)}}">
+                    <a class="flex items-center text-sm" href="{{ route('profiles.show', $user->username)}}">
                         <img
                             src="{{ $user->avatar }}"
                             alt=""

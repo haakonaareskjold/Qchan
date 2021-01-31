@@ -38,6 +38,8 @@ class ProfilesController extends Controller
     {
         $this->authorize('edit', $user);
 
+        #TODO implement password change in another method and view
+
         $attributes = $request->validate([
             'name' => ['required', 'string', 'max:70'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
@@ -45,11 +47,7 @@ class ProfilesController extends Controller
             'description' => ['nullable', 'string', 'max:70'],
             'username' => ['required', 'string', 'max:20', 'min:5', 'alpha_dash', Rule::unique('users')->ignore($user)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
-            'password' => ['required', 'string', 'min:8', 'max:2000', 'confirmed'],
         ]);
-
-
-        $attributes['password'] =  Hash::make($attributes['password']);
 
         if (request('avatar')) {
             $path = $attributes['avatar'] = Storage::putFileAs(
