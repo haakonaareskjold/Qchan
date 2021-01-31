@@ -13,8 +13,8 @@ class User extends Authenticatable
     use Notifiable;
     use UserFollowable;
 
-    const ADMIN_TYPE = 'admin';
-    const DEFAULT_TYPE = 'default';
+    protected const ADMIN_TYPE = 'admin';
+    protected const DEFAULT_TYPE = 'default';
 
     /**
      * The attributes that are mass assignable.
