@@ -23,6 +23,6 @@ class ExploreController extends Controller
      */
     public function __invoke(User $user)
     {
-        return view('qchan._explore', ['users' => $user::paginate(10)]);
+        return view('qchan._explore', ['users' => $user::query()->paginate(10)]);
     }
 }

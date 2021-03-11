@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait PostLikeable
 {
-    public function scopeWithLikes(Builder $query)
+    public function scopeWithLikes(Builder $query): void
     {
         $query->leftJoinSub(
             'select post_id,
@@ -39,7 +39,7 @@ trait PostLikeable
     {
         $this->likes()
             ->updateOrCreate([
-                'user_id' => $user ? $user->id : auth()->id(),
+                'user_id' => $user->id ?? auth()->id(),
             ], [
                 'liked' => $liked
             ]);

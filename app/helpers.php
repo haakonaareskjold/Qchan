@@ -7,5 +7,5 @@ function current_user(): ?\Illuminate\Contracts\Auth\Authenticatable
 
 function isAdmin()
 {
-    return current_user()->adminStatus() == true;
+    return current_user()->adminStatus() === true;
 }
