@@ -55,7 +55,7 @@ class ProfilesController extends Controller
                 request('avatar'),
                 $user->username
             );
-            if (env('FILESYSTEM_DRIVER') == 's3') {
+            if (env('FILESYSTEM_DRIVER') === 's3') {
                 Storage::disk('s3')->setVisibility($path, 'public');
             }
         }
@@ -66,7 +66,7 @@ class ProfilesController extends Controller
                 request('background'),
                 $request->user()->username
             );
-            if (env('FILESYSTEM_DRIVER') == 's3') {
+            if (env('FILESYSTEM_DRIVER') === 's3') {
                 Storage::disk('s3')->setVisibility($path, 'public');
             }
         }

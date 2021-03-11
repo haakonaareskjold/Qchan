@@ -13,8 +13,8 @@ class MainController extends Controller
     {
         if (auth()->check()) {
             return redirect(route('posts.index'));
-        } else {
-            return view('components.main');
         }
+
+        return view('components.main');
     }
 }
