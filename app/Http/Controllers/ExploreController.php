@@ -26,8 +26,17 @@ class ExploreController extends Controller
      */
     public function __invoke(User $user)
     {
-        // hardcoded to user, but temporarily works
-        $explored = User::find(2)->isFollowedBy(current_user());
+        $data = DB::table('follows')->pluck('following_user_id')->all();
+
+        if (!empty($data)) {
+            foreach ($data as $int) {
+                $follower = \App\Models\User::find($int);
+            }
+
+            $explored = $follower->isFollowedBy(current_user());
+        } else {
+            $explored = '';
+        }
 
         return view('qchan._explore', [
             'users' => $user::query()->paginate(10),
