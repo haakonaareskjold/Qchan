@@ -1,11 +1,11 @@
 <x-App>
-        <div class="flex flex-column">
-            <div class="flex-wrap mb-4">
+        <div class="flex flex-column relative">
+            <div class="flex-wrap mb-4 relative">
             @foreach($users as $user)
                     @foreach($following as $follows)
                         @if($user->name === $follows->name)
-                            {{$user->name}} is already followed
-                        @endif
+                            <div class="absolute bottom text-red-500  font-bold text-right">User has already been followed</div>
+                            @endif
                     @endforeach
                 @if(!current_user()->is($user))
 
