@@ -50,8 +50,9 @@ deploy_staging:
     - staging
   image: tiangolo/docker-with-compose
   script:
+    - docker-compose -f docker-compose.prod.yml build --no-cache
     - docker-compose -f docker-compose.staging.yml down
-    - docker-compose -f docker-compose.staging.yml up -d --force-recreate
+    - docker-compose -f docker-compose.staging.yml up -d --remove-orphans
   after_script:
     - docker exec qchan_api_1 php artisan migrate --force
     - ln -s /var/www/storage/app/public/avatars public/avatars
@@ -97,8 +98,8 @@ deploy_production:
     - production
   image: tiangolo/docker-with-compose
   script:
+    - docker-compose build --no-cache
     - docker-compose -f docker-compose.prod.yml down
-    - docker-compose -f docker-compose.prod.yml up -d --force-recreate
+    - docker-compose -f docker-compose.prod.yml up -d --remove-orphans
   after_script:
     - docker exec qchan_api_1 php artisan migrate --force
-  when: manual
