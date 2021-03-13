@@ -21,13 +21,13 @@ class ExploreController extends Controller
      * Handle the incoming request.
      *
      * @param User $user
+     * @param $id
      * @return Application|Factory|View|Response
      */
     public function __invoke(User $user)
     {
-        $users = User::find(1);
-
-        $explored = $users->isFollowing($user);
+        // hardcoded to user, but temporarily works
+        $explored = User::find(2)->isFollowedBy(current_user());
 
         return view('qchan._explore', [
             'users' => $user::query()->paginate(10),
