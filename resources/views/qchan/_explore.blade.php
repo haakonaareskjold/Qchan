@@ -16,6 +16,9 @@
                 @if($onlyUser)
                     <div class="text-lg font-bold text-red-500 mt-12">No other users exists at the moment, invite your friends!</div>
                     @endif
+                @if($explored)
+                    <div>explored</div>
+                    @endif
             </div>
             {{$users->links()}}
         </div>

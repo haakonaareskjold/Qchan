@@ -7,18 +7,25 @@ use Illuminate\Support\Facades\Notification;
 
 trait UserFollowable
 {
+    // method to follow a user
     public function follow(User $user)
     {
         return $this->follows()->save($user);
     }
 
-    // returns pivot table for follows
+    // returns who current user follows
     public function follows()
     {
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
     }
 
-    // returns
+
+
+    public function isFollowing()
+    {
+        return !! $this->follows()->where('following_user_id', 2)->count();
+    }
+
     public function following(User $user)
     {
         return $this->follows()
