@@ -4,7 +4,7 @@
             @foreach($users as $user)
                     @foreach($following as $follows)
                         @if($user->name === $follows->name)
-                            <div class="absolute bottom text-red-500  font-bold text-right">User has already been followed</div>
+                            <div class="absolute bottom ml-6 text-red-500  font-bold text-right">User has already been followed</div>
                             @endif
                     @endforeach
                 @if(!current_user()->is($user))
