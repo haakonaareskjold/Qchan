@@ -2,6 +2,11 @@
         <div class="flex flex-column">
             <div class="flex-wrap mb-4">
             @foreach($users as $user)
+                    @foreach($following as $follows)
+                        @if($user->name === $follows->name)
+                            {{$user->name}} is already followed
+                        @endif
+                    @endforeach
                 @if(!current_user()->is($user))
 
                 <a href="{{ $user->path() }}">
@@ -12,13 +17,13 @@
                     <span class="font-bold d-block text-center mb-4">{{'@'.$user->username}}</span>
                 </a>
                     @endif
+
+
             @endforeach
                 @if($onlyUser)
                     <div class="text-lg font-bold text-red-500 mt-12">No other users exists at the moment, invite your friends!</div>
                     @endif
-                @if($explored)
-                    <div>explored</div>
-                    @endif
+
             </div>
             {{$users->links()}}
         </div>
