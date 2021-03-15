@@ -101,4 +101,3 @@ deploy_production:
     - docker-compose -f docker-compose.prod.yml up -d --force-recreate
   after_script:
     - docker exec qchan_api_1 php artisan migrate --force
-  when: manual
