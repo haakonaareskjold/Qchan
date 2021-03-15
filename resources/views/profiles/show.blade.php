@@ -11,6 +11,7 @@
             <div>
                 <h2 class="font-weight-bold text-2xl mb-2 {{$user->type !== 'admin' ?: 'text-yellow-500'}}">{{ $user->name}}</h2>
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
+                <p class="text-sm">Last seen online {{$user->last_online_at->diffForHumans()}}</p>
             </div>
 
             <div class="flex">
@@ -36,7 +37,7 @@
             @if(!is_null($user->description))
             <p class="font-semibold">{{ $user->description }}</p>
             @else
-            <p>Hi, I am {{ $user->name }}</p>
+            <p class="font-semibold">Hi, I am {{ $user->name }}</p>
             @endif
         </div>
     </header>
