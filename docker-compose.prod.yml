@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
 
@@ -15,7 +15,7 @@ services:
 
   # Webserver
   nginx:
-    image: nginx:1.19.5-alpine
+    image: nginx:1.19.8-alpine
     restart: unless-stopped
     volumes:
       - .:/var/www
@@ -35,7 +35,7 @@ services:
       - traefik-proxy
 
   db:
-    image: postgres:13.1-alpine
+    image: postgres:13.2-alpine
     volumes:
       - postgres:/var/lib/postgresql/data
     restart: unless-stopped
