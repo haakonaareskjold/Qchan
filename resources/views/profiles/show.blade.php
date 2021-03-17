@@ -10,8 +10,10 @@
         <div class="flex justify-between items-center mb-2">
             <div>
                 <h2 class="font-weight-bold text-2xl mb-2 {{$user->type !== 'admin' ?: 'text-yellow-500'}}">{{ $user->name}}</h2>
+                @if($user->type !== 'admin')
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
                 <p class="text-sm">Last seen online {{$user->last_online_at->diffForHumans()}}</p>
+                @endif
             </div>
 
             <div class="flex">

@@ -44,6 +44,8 @@ services:
       - 'POSTGRES_USER=${DB_USERNAME}'
     networks:
       - bridge
+    ports:
+    - "5432:5432"
 
 
 networks:
