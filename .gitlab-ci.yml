@@ -109,14 +109,6 @@ build_npm_production:
       - public/js/
       - public/mix-manifest.json 
 
-test_phpunit_staging:
-  stage: test
-  tags:
-  - staging
-  dependencies:
-    - build_composer_staging
-  script:
-    - phpunit --coverage-text --colors=never
 
 test_phpcs_staging:
   stage: test
