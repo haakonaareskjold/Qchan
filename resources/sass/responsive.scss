@@ -1,0 +1,74 @@
+$radius: 2rem;
+$animation: cubic-bezier(0, 0.76, 0.58, 1.43);
+$primary-color: #290046;
+$secondary-color: #ff652f;
+$background-color: #979797;
+
+@include media-md {
+    .aninavtree {
+        display: none;
+    }
+    .aninav {
+        padding: 1rem;
+        width: 10rem;
+        margin: 0 2rem;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        height: 100vh;
+
+
+        &__list {
+            justify-content: center;
+            gap: 1rem;
+
+            &item {
+                list-style: none;
+                padding: 1rem;
+                cursor: pointer;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    width: 4rem;
+                    height: 4rem;
+                    background-color: $secondary-color;
+                    display: block;
+                    border-radius: $radius;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transition: transform 400ms $animation;
+                    transform: scale(0);
+                    z-index: 1;
+                }
+
+                svg {
+                    fill:$background-color;
+                    width: 2rem;
+                    transition: fill 400ms $animation;
+                    z-index: 99;
+                    position: relative;
+                }
+                &:hover svg {
+                    fill: $primary-color;
+                }
+
+                &-active {
+                    svg {
+                        fill: $primary-color;
+                    }
+                    &::before {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-lg {
+    .aninav {
+        display: none;
+    }
+}
