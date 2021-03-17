@@ -3,7 +3,7 @@ stages:
     - test
     - deploy
 
-build_staging:
+build_composer_staging:
   stage: build
   tags:
     - staging
@@ -30,35 +30,34 @@ build_staging:
     expire_in: 1 days
     when: always
 
-
-test_staging:
-  stage: test
+build_npm_staging:
+  stage: build
   tags:
     - staging
   only:
     - staging
-  dependencies: []
+  
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-npm
+    paths:
+      - node_modules/
+
+  # Install and compile.
   script:
-    - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
-    - phpcs --standard=PSR12 --extensions=php app/Models/
+      - npm install
+      - npm run production
 
-deploy_staging:
-  stage: deploy
-  only:
-    - staging
-  tags:
-    - staging
-  image: tiangolo/docker-with-compose
-  script:
-    - docker-compose -f docker-compose.staging.yml down
-    - docker-compose -f docker-compose.staging.yml up -d --force-recreate
-  after_script:
-    - docker exec qchan_api_1 php artisan migrate --force
-    - ln -s /var/www/storage/app/public/avatars public/avatars
-    - ln -s /var/www/storage/app/public/backgrounds public/backgrounds
+  # Provide the other jobs of the pipeline with
+  # the node dependencies and the compiled assets.
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - node_modules/
+      - public/css/
+      - public/js/
+      - public/mix-manifest.json 
 
-
-build_production:
+build_composer_production:
   stage: build
   tags:
     - production
@@ -87,7 +86,65 @@ build_production:
     expire_in: 1 days
     when: always
 
+build_npm_production:
+  stage: build
+  tags:
+    - production
+  only:
+    - production
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-npm
+    paths:
+      - node_modules/
 
+  script:
+      - npm install
+      - npm run production
+
+  artifacts:
+    expire_in: 1 days
+    paths:
+      - node_modules/
+      - public/css/
+      - public/js/
+      - public/mix-manifest.json 
+
+test_phpunit_staging:
+  stage: test
+  tags:
+  - staging
+  dependencies:
+    - build_composer_staging
+  script:
+    - phpunit --coverage-text --colors=never
+
+test_phpcs_staging:
+  stage: test
+  tags:
+    - staging
+  only:
+    - staging
+  dependencies: []
+  script:
+    - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
+    - phpcs --standard=PSR12 --extensions=php app/Models/
+
+
+
+deploy_staging:
+  stage: deploy
+  only:
+    - staging
+  tags:
+    - staging
+  image: tiangolo/docker-with-compose
+  script:
+    - docker-compose -f docker-compose.staging.yml down
+    - docker-compose -f docker-compose.staging.yml up -d --force-recreate
+  after_script:
+    - docker exec qchan_api_1 php artisan migrate --force
+    - ln -s /var/www/storage/app/public/avatars public/avatars
+    - ln -s /var/www/storage/app/public/backgrounds public/backgrounds
 
 deploy_production:
   stage: deploy
