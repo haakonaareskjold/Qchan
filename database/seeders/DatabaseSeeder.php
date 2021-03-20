@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
          \App\Models\Reply::factory(3)->create();
          \App\Models\Like::factory(5)->create();
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i=0; $i < 1; $i++) {
             DB::table('follows')->insert(
                 [
                     'user_id' => \App\Models\User::all()->random()->id,

@@ -24,7 +24,7 @@ services:
       - bridge
 
   db:
-    image: postgres:13.1-alpine
+    image: postgres:13.2-alpine
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
@@ -39,5 +39,5 @@ networks:
     driver: bridge
 
 volumes:
-  postgres:
+  pgsql_data:
     driver: local

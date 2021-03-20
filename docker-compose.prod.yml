@@ -42,7 +42,6 @@ services:
     environment:
       - 'POSTGRES_PASSWORD=${DB_PASSWORD}'
       - 'POSTGRES_USER=${DB_USERNAME}'
-      - 'POSTGRES_DB=${DB_DATABASE}'
     networks:
       - bridge
     ports:
@@ -56,5 +55,5 @@ networks:
     external: true
 
 volumes:
-  postgres:
+  pgsql_data:
     driver: local
