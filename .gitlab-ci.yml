@@ -36,7 +36,7 @@ build_npm_staging:
     - staging
   only:
     - staging
-  
+
   cache:
     key: ${CI_COMMIT_REF_SLUG}-npm
     paths:
@@ -55,7 +55,7 @@ build_npm_staging:
       - node_modules/
       - public/css/
       - public/js/
-      - public/mix-manifest.json 
+      - public/mix-manifest.json
 
 build_composer_production:
   stage: build
@@ -71,6 +71,10 @@ build_composer_production:
     - echo "${AWS_ACCESS_KEY_ID}" >> .env
     - echo "${AWS_SECRET_ACCESS_KEY}" >> .env
     - echo "APP_URL=https://qchan.haakon.wtf/" >> .env
+    - echo "${DB_DATABASE}" >> .env
+    - echo "${DB_USERNAME}" >> .env
+    - echo "${DB_PASSWORD}" >> .env
+
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
@@ -107,7 +111,7 @@ build_npm_production:
       - node_modules/
       - public/css/
       - public/js/
-      - public/mix-manifest.json 
+      - public/mix-manifest.json
 
 
 test_phpcs_staging:
