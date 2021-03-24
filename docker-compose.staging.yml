@@ -24,7 +24,7 @@ services:
       - bridge
 
   postgres:
-    image: postgres:13.2-alpine
+    image: postgres:13.1-alpine
     volumes:
         - pgsql_data:/var/lib/postgresql/data
     environment:
