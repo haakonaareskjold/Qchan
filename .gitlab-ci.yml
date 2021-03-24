@@ -1,6 +1,5 @@
 stages:
     - build
-    - test
     - deploy
 
 build_composer_staging:
@@ -13,14 +12,13 @@ build_composer_staging:
   before_script:
     - cp .env.production .env
     - echo "APP_ENV=local" >> .env
-    - echo "DB_DATABASE=qchan" >> .env
-    - echo "DB_USERNAME=haakon" >> .env
+    - echo "APP_URL=http://localhost" >> .env
+    - echo "DB_DATABASE=postgres" >> .env
+    - echo "DB_USERNAME=postgres" >> .env
     - echo "DB_PASSWORD=hunter2" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
-  after_script:
-    - echo "APP_URL=http://localhost" >> .env
 
   cache:
     key: ${CI_COMMIT_REF_SLUG}-composer
@@ -115,18 +113,6 @@ build_npm_production:
       - public/css/
       - public/js/
       - public/mix-manifest.json
-
-
-test_phpcs_staging:
-  stage: test
-  tags:
-    - staging
-  only:
-    - staging
-  dependencies: []
-  script:
-    - phpcs --standard=PSR12 --extensions=php app/Http/Controllers/
-    - phpcs --standard=PSR12 --extensions=php app/Models/
 
 
 
