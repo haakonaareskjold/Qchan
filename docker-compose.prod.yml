@@ -44,8 +44,6 @@ services:
       - 'POSTGRES_USER=${DB_USERNAME}'
     networks:
       - bridge
-    ports:
-      - "5432:5432"
 
 
 networks:
@@ -55,5 +53,5 @@ networks:
     external: true
 
 volumes:
-  pgsql_data:
+  postgres:
     driver: local

@@ -72,10 +72,8 @@ build_composer_production:
     - echo "${AWS_ACCESS_KEY_ID}" >> .env
     - echo "${AWS_SECRET_ACCESS_KEY}" >> .env
     - echo "APP_URL=https://qchan.haakon.wtf/" >> .env
-    - echo "${DB_DATABASE}" >> .env
-    - echo "${DB_USERNAME}" >> .env
+    - echo "${AWS_SECRET_ACCESS_KEY}" >> .env
     - echo "${DB_PASSWORD}" >> .env
-
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
