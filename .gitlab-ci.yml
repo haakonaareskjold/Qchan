@@ -13,6 +13,9 @@ build_composer_staging:
   before_script:
     - cp .env.production .env
     - echo "APP_ENV=local" >> .env
+    - echo "DB_DATABASE=laravel" >> .env
+    - echo "DB_USERNAME=haakon" >> .env
+    - echo "DB_PASSWORD=password" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
