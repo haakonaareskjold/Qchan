@@ -67,12 +67,11 @@ build_composer_production:
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
-    - echo "FILESYSTEM_DRIVER=s3" >> .env
     - echo "${AWS_BUCKET}" >> .env
     - echo "${AWS_ACCESS_KEY_ID}" >> .env
     - echo "${AWS_SECRET_ACCESS_KEY}" >> .env
+    - echo "FILESYSTEM_DRIVER=s3" >> .env
     - echo "APP_URL=https://qchan.haakon.wtf/" >> .env
-    - echo "${AWS_SECRET_ACCESS_KEY}" >> .env
     - echo "${DB_PASSWORD}" >> .env
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
