@@ -23,7 +23,7 @@ services:
     networks:
       - bridge
 
-  postgres:
+  db:
     image: postgres:13.2-alpine
     volumes:
       - pgsql_data:/var/lib/postgresql/data
