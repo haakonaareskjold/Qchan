@@ -90,6 +90,10 @@ class ProfilesController extends Controller
             if (!isAdmin()) {
                 auth()->logout();
             }
+            if (env('FILESYSTEM_DRIVER') === 's3') {
+                Storage::disk('s3')->delete("backgrounds/{$user->username}");
+                Storage::disk('s3')->delete("avatars/{$user->username}");
+            }
             $user->delete();
         } catch (AuthorizationException $e) {
         }
