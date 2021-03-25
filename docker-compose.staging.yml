@@ -14,7 +14,7 @@ services:
 
   # Webserver
   nginx:
-    image: nginx:1.19.5-alpine
+    image: nginx:1.19.8-alpine
     ports:
       - 8000:80
     volumes:
