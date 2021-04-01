@@ -71,4 +71,19 @@ $background-color: #979797;
     .aninav {
         display: none;
     }
+    .links {
+        align-items: center;
+        display: block;
+        font-size:large;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        font-weight: bold;
+
+        &-active {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #ff652f;
+            width: 50%;
+        }
+    }
 }
