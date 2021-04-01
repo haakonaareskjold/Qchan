@@ -60,19 +60,7 @@
             </li>
     </ul>
 </nav>
-<script>
-    let aninav = document.querySelector(".aninav");
-    let aninavListItem = document.querySelectorAll(".aninav__listitem")
 
-    aninavListItem.forEach((link) => link.addEventListener("click", listActive));
-
-    function listActive() {
-        aninavListItem.forEach((link) =>
-            link.classList.remove("aninav__listitem-active"));
-
-        this.classList.add("aninav__listitem-active");
-    }
-</script>
 
 <section class="px-8 py-4 mb-2">
     <header class="container mx-auto">
