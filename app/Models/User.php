@@ -103,15 +103,15 @@ class User extends Authenticatable
      */
     public function fileSystemCheck($value, string $default): string
     {
-        if (env('FILESYSTEM_DRIVER') == 's3') {
+        if (env('FILESYSTEM_DRIVER') === 's3') {
             if (Storage::disk('s3')->exists($value)) {
                 return asset(Storage::disk('s3')->url($value));
-            } else {
-                return asset($default);
             }
-        } else {
-            return asset($value ?: $default);
+
+            return asset($default);
         }
+
+        return asset($value ?: $default);
     }
 
     public function adminStatus()
