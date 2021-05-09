@@ -20,7 +20,7 @@
         @csrf
         <textarea
             name="body"
-            class="w-full"
+            class="w-full border border-gray-300 rounded-lg"
             placeholder="Write a reply"
         ></textarea>
 

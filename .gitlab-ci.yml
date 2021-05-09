@@ -61,7 +61,7 @@ build_composer_production:
   tags:
     - production
   only:
-    - production
+    - tags
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
@@ -91,7 +91,7 @@ build_npm_production:
   tags:
     - production
   only:
-    - production
+    - tags
   cache:
     key: ${CI_COMMIT_REF_SLUG}-npm
     paths:
@@ -131,7 +131,7 @@ deploy_production:
   only:
     - production
   tags:
-    - production
+    - tags
   image: tiangolo/docker-with-compose
   script:
     - docker-compose -f docker-compose.prod.yml down
