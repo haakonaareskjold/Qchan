@@ -131,7 +131,7 @@ deploy_production:
   tags:
     - production
   rules:
-    - if: '$CI_COMMIT_TAG =~ /^prod_[0-9]+\.[0-9]+$/'
+    - if: '$CI_COMMIT_TAG =~ /prod_[0-9]+\.[0-9]+$/'
   image: tiangolo/docker-with-compose
   script:
     - docker-compose -f docker-compose.prod.yml down
