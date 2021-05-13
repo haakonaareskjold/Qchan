@@ -1,9 +1,6 @@
 # Qchan
 [Qchan website](https://qchan.haakon.wtf/)
 
-Production:
-[![pipeline status](https://gitlab.com/haakon36/Qchan/badges/production/pipeline.svg)](https://gitlab.com/haakon36/Qchan/-/commits/production)
-
 ### About
 
 Qchan - A social-media app made in Laravel. Postgres for DB. Users can make posts (CRUD), reply to them, upvote and downvote, follow other users, dynamic profiles with custom avatars- and backgrounds, Using S3 AWS for storage  in production.
