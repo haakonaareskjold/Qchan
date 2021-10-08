@@ -17,6 +17,7 @@ build_composer_staging:
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
+    - php artisan config:cache
 
   cache:
     key: ${CI_COMMIT_REF_SLUG}-composer
@@ -74,6 +75,7 @@ build_composer_production:
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
     - php artisan key:generate
+    - php artisan config:cache
 
   cache:
     key: ${CI_COMMIT_REF_SLUG}-composer
