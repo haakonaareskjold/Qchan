@@ -66,6 +66,7 @@ build_composer_production:
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
+    - echo "APP_ENV=production" >> .env
     - echo "${AWS_BUCKET}" >> .env
     - echo "${AWS_ACCESS_KEY_ID}" >> .env
     - echo "${AWS_SECRET_ACCESS_KEY}" >> .env
