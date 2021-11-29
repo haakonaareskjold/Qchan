@@ -7,7 +7,6 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: laravel
-    container_name: api
     restart: unless-stopped
     working_dir: /var/www
     volumes:
@@ -16,19 +15,17 @@ services:
       - laravel
 
   node:
-    container_name: node
     build:
       context: ./
       dockerfile: node.dockerfile
     volumes:
       - ./:/var/www
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm install && npm run watch"
     networks:
       - laravel
 
   nginx:
     image: nginx:alpine
-    container_name: nginx
     restart: unless-stopped
     ports:
       - "8000:80"
@@ -40,7 +37,6 @@ services:
 
   composer:
     image: composer
-    container_name: composer
     command: composer install
     working_dir: /var/www
     volumes:
