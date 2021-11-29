@@ -3,8 +3,6 @@ FROM php:8.0-fpm-alpine3.12
 ARG USER=nemesis
 ARG ID=1000
 
-COPY ./ /var/www
-
 RUN apk add --no-cache \
     bash \
     curl \
@@ -21,7 +19,6 @@ RUN apk add --no-cache \
     libzip-dev \
     make \
     oniguruma-dev \
-    yarn \
     openssh-client \
     postgresql-libs \
     postgresql-dev \

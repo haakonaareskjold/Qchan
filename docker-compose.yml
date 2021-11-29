@@ -2,6 +2,50 @@ version: "3.8"
 
 services:
 
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: laravel
+    container_name: api
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - laravel
+
+  node:
+    container_name: node
+    build:
+      context: ./
+      dockerfile: node.dockerfile
+    volumes:
+      - ./:/var/www
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - laravel
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - laravel
+
+  composer:
+    image: composer
+    container_name: composer
+    command: composer install
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+
   postgres:
     image: postgres:13.2-alpine
     volumes:
@@ -10,8 +54,15 @@ services:
       - 'POSTGRES_PASSWORD=${DB_PASSWORD}'
     ports:
       - "5432:5432"
+    networks:
+      - laravel
 
 
 volumes:
   pgsql_data:
     driver: local
+
+networks:
+  laravel:
+    driver: bridge
+
