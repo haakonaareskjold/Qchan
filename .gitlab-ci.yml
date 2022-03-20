@@ -7,7 +7,7 @@ build_composer_staging:
   tags:
     - staging
   only:
-    - staging
+    - tags
   image: lorisleiva/laravel-docker:latest
   before_script:
     - cp .env.production .env
@@ -35,7 +35,7 @@ build_npm_staging:
   tags:
     - staging
   only:
-    - staging
+    - tags
 
   cache:
     key: ${CI_COMMIT_REF_SLUG}-npm
@@ -117,7 +117,7 @@ build_npm_production:
 deploy_staging:
   stage: deploy
   only:
-    - staging
+    - tags
   tags:
     - staging
   image: tiangolo/docker-with-compose
