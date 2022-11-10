@@ -22,8 +22,8 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => \App\Models\User::all()->random()->id,
             'post_id' => \App\Models\Post::all()->random()->id,
+            'user_id' => \App\Models\User::all()->random()->id,
             'liked' => random_int(0, 1)
         ];
     }
